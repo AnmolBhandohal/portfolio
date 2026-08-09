@@ -12,16 +12,15 @@ export function Footer() {
         </div>
         <div>
           <dt>Rev</dt>
-          <dd>3.0</dd>
+          <dd>4.0</dd>
         </div>
         <div>
           <dt>Sheet</dt>
           <dd>1 of 1</dd>
         </div>
       </dl>
-      <p className="foot-note">
-        Drawn by hand in HTML / CSS / JS — no template, no build step. Not to scale.
-      </p>
+      <p className="foot-note">DS-2029 · Built with Next.js — motion by GSAP. Not to scale.</p>
+      <p className="foot-note">Rev 4.0 — ported to Next.js, motion system added.</p>
     </footer>
   );
 }

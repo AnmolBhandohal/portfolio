@@ -27,7 +27,7 @@ export function Nav() {
     <nav aria-label="Section index">
       <span className="nav-id">
         <b>ANMOL · EE</b>
-        &nbsp; DS-2029 · REV 3.0
+        &nbsp; DS-2029 · REV 4.0
       </span>
       <ul>
         {links.map((link) => (
