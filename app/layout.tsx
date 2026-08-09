@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Saira_Condensed, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { Fiducials } from "@/components/fiducials";
-import { SmoothScroll } from "@/components/smooth-scroll";
 
 const sairaCondensed = Saira_Condensed({
   variable: "--font-disp",
@@ -37,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body>
         <Fiducials />
-        <SmoothScroll>{children}</SmoothScroll>
+        {children}
       </body>
     </html>
   );

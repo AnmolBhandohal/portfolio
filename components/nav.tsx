@@ -1,7 +1,5 @@
 "use client";
 
-import { useLenis } from "@/lib/lenis-context";
-
 const links = [
   { href: "#projects", index: "01", label: "Projects" },
   { href: "#about", index: "02", label: "About" },
@@ -10,17 +8,11 @@ const links = [
 ];
 
 export function Nav() {
-  const lenis = useLenis();
-
   function handleClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
     const target = document.querySelector(href);
     if (!target) return;
     e.preventDefault();
-    if (lenis) {
-      lenis.scrollTo(target as HTMLElement, { offset: -24 });
-    } else {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    target.scrollIntoView({ block: "start" });
   }
 
   return (

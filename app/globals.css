@@ -22,7 +22,7 @@
   box-sizing: border-box;
 }
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
 }
 body {
   background: var(--paper);
