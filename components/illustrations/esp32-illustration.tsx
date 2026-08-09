@@ -1,6 +1,48 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { loadGsap } from "@/lib/gsap";
+import { primeDraw } from "@/lib/draw-path";
+
 export function Esp32Illustration() {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    if (!svgRef.current) return;
+    const { gsap } = loadGsap();
+    const root = svgRef.current;
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const wifi = ["esp-wifi-1", "esp-wifi-2", "esp-wifi-3"].map(
+        (id) => root.querySelector<SVGPathElement>(`#${id}`)!
+      );
+      const sparkline = root.querySelector<SVGPolylineElement>("#esp-sparkline")!;
+
+      wifi.forEach(primeDraw);
+      primeDraw(sparkline);
+
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: root, start: "top 85%", once: true },
+      });
+      tl.to(wifi, {
+        strokeDashoffset: 0,
+        duration: 0.5,
+        ease: "power1.inOut",
+        stagger: 0.18,
+      }).to(
+        sparkline,
+        { strokeDashoffset: 0, duration: 0.7, ease: "power1.inOut" },
+        ">0.1"
+      );
+    });
+
+    return () => mm.revert();
+  }, []);
+
   return (
     <svg
+      ref={svgRef}
       viewBox="0 0 360 250"
       role="img"
       aria-label="ESP32 module with antenna transmitting to a live web dashboard, with a connected sensor array for temperature, humidity and air quality"
@@ -27,9 +69,9 @@ export function Esp32Illustration() {
         Wi-Fi · C/C++
       </text>
       {/* wifi arcs */}
-      <path className="cu" d="M160 78a26 26 0 0 1 22 22" fill="none" />
-      <path className="cu" d="M160 62a42 42 0 0 1 38 38" fill="none" />
-      <path className="cu" d="M160 46a58 58 0 0 1 54 54" fill="none" />
+      <path id="esp-wifi-1" className="cu" d="M160 78a26 26 0 0 1 22 22" fill="none" />
+      <path id="esp-wifi-2" className="cu" d="M160 62a42 42 0 0 1 38 38" fill="none" />
+      <path id="esp-wifi-3" className="cu" d="M160 46a58 58 0 0 1 54 54" fill="none" />
       {/* dashboard */}
       <rect className="d" x="232" y="52" width="112" height="84" />
       <path className="d-thin" d="M232 68h112" />
@@ -38,6 +80,7 @@ export function Esp32Illustration() {
       <circle cx="256" cy="60" r="2" fill="#5D6470" />
       <path className="d-thin" d="M244 124V78M244 124h90" />
       <polyline
+        id="esp-sparkline"
         className="cu"
         points="248,112 262,104 274,110 288,92 300,98 314,84 330,90"
       />

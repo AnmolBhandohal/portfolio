@@ -1,6 +1,41 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { loadGsap } from "@/lib/gsap";
+import { primeDraw } from "@/lib/draw-path";
+
 export function LedLampIllustration() {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  useEffect(() => {
+    if (!svgRef.current) return;
+    const { gsap } = loadGsap();
+    const root = svgRef.current;
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const feedback = root.querySelector<SVGPathElement>("#ll-feedback")!;
+      const arrow = root.querySelector<SVGPathElement>("#ll-feedback-arrow")!;
+
+      primeDraw(feedback);
+      gsap.set(arrow, { opacity: 0 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: root, start: "top 85%", once: true },
+      });
+      tl.to(feedback, {
+        strokeDashoffset: 0,
+        duration: 0.9,
+        ease: "power1.inOut",
+      }).to(arrow, { opacity: 1, duration: 0.25 }, ">");
+    });
+
+    return () => mm.revert();
+  }, []);
+
   return (
     <svg
+      ref={svgRef}
       viewBox="0 0 360 250"
       role="img"
       aria-label="Control loop block diagram: setpoint into a summing junction, PWM driver, LED, light sensed by a photoresistor and fed back to close the loop"
@@ -55,8 +90,8 @@ export function LedLampIllustration() {
       <path d="M232 132l6-2-3-5z" fill="#5D6470" />
       <path d="M220 132l6-2-3-5z" fill="#5D6470" />
       {/* feedback (copper) */}
-      <path className="cu" d="M152 155H132V78" />
-      <path d="M132 78l-4 8h8z" fill="#B06A2E" />
+      <path id="ll-feedback" className="cu" d="M152 155H132V78" />
+      <path id="ll-feedback-arrow" d="M132 78l-4 8h8z" fill="#B06A2E" />
       <text className="lbl lbl-cu" x="80" y="150">
         feedback
       </text>
