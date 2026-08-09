@@ -18,6 +18,7 @@ export interface Project {
   illustration: ComponentType;
   why: string;
   specs: ProjectSpec[];
+  figCaption: string;
 }
 
 export const projects: Project[] = [
@@ -34,6 +35,7 @@ export const projects: Project[] = [
       { th: "Scope", td: "Power distribution · sensor wiring · integration testing" },
       { th: "Team", td: "ARVP — multidisciplinary student design team" },
     ],
+    figCaption: "FIG. 2 — VEHICLE ASSEMBLY, REV C",
   },
   {
     id: "led-lamp",
@@ -48,6 +50,7 @@ export const projects: Project[] = [
       { th: "Control", td: "Closed-loop feedback · ±7 lux accuracy" },
       { th: "Drive", td: "5 kHz PWM dimming" },
     ],
+    figCaption: "FIG. 2 — ASSEMBLED BOARD, REV B",
   },
   {
     id: "esp32",
@@ -62,6 +65,7 @@ export const projects: Project[] = [
       { th: "Firmware", td: "C/C++ · Wi-Fi telemetry" },
       { th: "Dashboard", td: "Web-based live data view" },
     ],
+    figCaption: "FIG. 2 — ASSEMBLED MODULE, REV A",
   },
   {
     id: "momentum",
@@ -76,5 +80,6 @@ export const projects: Project[] = [
       { th: "Core loop", td: "Session modes · per-block timers" },
       { th: "System", td: "Streak orb progression · daily scoring" },
     ],
+    figCaption: "FIG. 2 — APP SCREENSHOT, REV D",
   },
 ];

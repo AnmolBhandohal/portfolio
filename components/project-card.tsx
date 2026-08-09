@@ -1,10 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { projects } from "@/lib/projects-data";
 import { useReveal } from "@/lib/use-reveal";
 
-export function ProjectCard({ projectId }: { projectId: string }) {
+export function ProjectCard({
+  projectId,
+  figSrc,
+}: {
+  projectId: string;
+  figSrc: string | null;
+}) {
   const project = projects.find((p) => p.id === projectId);
   const [hovered, setHovered] = useState(false);
   const ref = useReveal<HTMLElement>();
@@ -34,6 +41,19 @@ export function ProjectCard({ projectId }: { projectId: string }) {
       <div className="ebody">
         <div className="efig">
           <Illustration />
+          {figSrc && (
+            <>
+              <div className="efig-photo">
+                <Image
+                  src={figSrc}
+                  alt={project.figCaption}
+                  fill
+                  sizes="(max-width: 720px) 100vw, 340px"
+                />
+              </div>
+              <p className="efig-cap">{project.figCaption}</p>
+            </>
+          )}
         </div>
         <div className="etext">
           <p className="why-label">Why it exists</p>

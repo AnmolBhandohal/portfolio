@@ -422,6 +422,7 @@ nav ul a:hover i {
   border-right: 1px solid var(--line);
   padding: 22px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   background: var(--paper-2);
 }
@@ -429,6 +430,26 @@ nav ul a:hover i {
   width: 100%;
   height: auto;
   display: block;
+}
+.efig-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-top: 16px;
+  border: 1px solid var(--ink);
+  overflow: hidden;
+}
+.efig-photo img {
+  object-fit: cover;
+}
+.efig-cap {
+  width: 100%;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
 }
 .etext {
   padding: 26px 28px 28px;
