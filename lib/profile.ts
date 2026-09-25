@@ -10,7 +10,7 @@ export const identity = {
   rev: "5.0",
   revDate: "2026-09",
   email: "bhandoha@ualberta.ca",
-  github: "https://github.com/xrutizx-star",
+  github: "https://github.com/AnmolBhandohal",
   linkedin: "https://www.linkedin.com/in/anmol-bhandohal-904789305/",
   resume: "/resume.pdf",
   availability: "Jan – Aug 2027",
