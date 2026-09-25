@@ -6,7 +6,7 @@ import { getFigSrc } from "@/lib/figs";
 export function ProjectsSection() {
   return (
     <section className="sec sec-projects" id="projects">
-      <SectionHead sectionId="projects" tapLabel="TP1" no="§1" title="Projects" />
+      <SectionHead sectionId="projects" tapLabel="TP2" no="§2" title="Projects" />
       {projects.map((project) => (
         <ProjectCard key={project.id} projectId={project.id} figSrc={getFigSrc(project.id)} />
       ))}

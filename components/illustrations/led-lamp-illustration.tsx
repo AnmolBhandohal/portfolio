@@ -96,7 +96,7 @@ export function LedLampIllustration() {
         feedback
       </text>
       <text className="lbl lbl-cu" x="86" y="163">
-        ±7 lux
+        lux
       </text>
       {/* footer note */}
       <path className="d-thin" d="M16 210h328" strokeDasharray="1 5" />

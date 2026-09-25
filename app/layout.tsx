@@ -25,7 +25,7 @@ const ibmPlexSans = IBM_Plex_Sans({
 export const metadata: Metadata = {
   title: "Anmol Bhandohal — Electrical Engineering Portfolio",
   description:
-    "Datasheet-styled portfolio for Anmol Bhandohal, electrical engineering student at the University of Alberta.",
+    "Anmol Bhandohal — third-year electrical engineering co-op student at the University of Alberta. PCB design, embedded firmware, and a summer of commercial electrical field work. Available Jan–Aug 2027.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

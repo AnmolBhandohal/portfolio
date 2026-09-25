@@ -2,6 +2,7 @@
 
 import { SectionHead } from "@/components/section-head";
 import { useReveal } from "@/lib/use-reveal";
+import { honours, operating } from "@/lib/profile";
 
 export function AboutSection() {
   const bioRef = useReveal<HTMLDivElement>();
@@ -9,43 +10,47 @@ export function AboutSection() {
 
   return (
     <section className="sec sec-about" id="about">
-      <SectionHead sectionId="about" tapLabel="TP2" no="§2" title="About" />
+      <SectionHead sectionId="about" tapLabel="TP4" no="§4" title="About" />
       <div className="about-grid">
         <div className="bio rv" ref={bioRef}>
           <p>
-            Third-year electrical engineering student at the University of Alberta,
-            currently splitting the week between coursework and an electrical
-            apprenticeship — panel schedules, three-phase distribution, fire alarm
-            circuits. The trade side teaches what the textbook skips: why the code
-            says what it says, what actually fails in the field, and what a clean
-            install looks like up close.
+            I split my time between two versions of electrical work. At school it&rsquo;s op-amp
+            filters, VHDL and PCB stackups. On site it&rsquo;s conduit, feeders and a fire alarm
+            panel that has to pass inspection. Most students only get the first; I think the
+            second made me better at it.
           </p>
           <p>
-            The same habit runs through everything here. On site or on a personal
-            project, the goal is the reasoning, not just the procedure — understand
-            why the circuit is built that way before touching it, then build
-            accordingly.
+            A site teaches you things a lab never does. A connector that&rsquo;s easy to crimp
+            can still be impossible to reach in the finished install. A ground fault only shows
+            up once the circuit is live. And a drawing is a promise the building then has to
+            keep. That&rsquo;s why I key connectors on the AUV so they can&rsquo;t go in
+            backwards, and why I size a data buffer for the whole test instead of the demo.
+          </p>
+          <p>
+            The rule this site follows: <strong>nothing on it I haven&rsquo;t actually done.</strong>{" "}
+            The lamp is still in development, so it shows the numbers I&rsquo;m designing for,
+            clearly marked. Measured results go up once they&rsquo;ve been measured.
           </p>
         </div>
+
         <div className="facts rv" ref={factsRef}>
-          <header>Reference data</header>
+          <header>Recommended operating conditions</header>
           <dl>
-            <div className="row">
-              <dt>Location</dt>
-              <dd>Edmonton, AB</dd>
-            </div>
-            <div className="row">
-              <dt>Program</dt>
-              <dd>BSc EE, Co-op — Class of 2029</dd>
-            </div>
-            <div className="row">
-              <dt>Current</dt>
-              <dd>Electrical apprenticeship — commercial / industrial</dd>
-            </div>
-            <div className="row">
-              <dt>Club</dt>
-              <dd>ARVP — autonomous underwater vehicle</dd>
-            </div>
+            {operating.map((o) => (
+              <div className="row" key={o.k}>
+                <dt>{o.k}</dt>
+                <dd>{o.v}</dd>
+              </div>
+            ))}
+          </dl>
+          <header>Qualifications</header>
+          <dl>
+            {honours.map((o) => (
+              <div className="row" key={o.k}>
+                <dt>{o.k}</dt>
+                <dd className="dd-prose">{o.v}</dd>
+              </div>
+            ))}
           </dl>
         </div>
       </div>

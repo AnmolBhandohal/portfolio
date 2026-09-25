@@ -17,6 +17,8 @@ export function ProjectCard({
   const ref = useReveal<HTMLElement>();
   if (!project) return null;
   const Illustration = project.illustration;
+  const stClass =
+    project.status === "active" ? "st-active" : project.status === "dev" ? "st-dev" : "st-ship";
 
   return (
     <article
@@ -34,14 +36,12 @@ export function ProjectCard({
       <div className="ebar">
         <h3>{project.title}</h3>
         <span className="rev">{project.rev}</span>
-        <span className={`st st-${project.status === "active" ? "active" : "ship"}`}>
-          {project.statusLabel}
-        </span>
+        <span className={`st ${stClass}`}>{project.statusLabel}</span>
       </div>
       <div className="ebody">
         <div className="efig">
           <Illustration />
-          {figSrc && (
+          {figSrc ? (
             <>
               <div className="efig-photo">
                 <Image
@@ -53,11 +53,20 @@ export function ProjectCard({
               </div>
               <p className="efig-cap">{project.figCaption}</p>
             </>
+          ) : (
+            <p className="efig-cap">{project.figCaption.replace(/,.*$/, "")} — schematic view</p>
           )}
         </div>
         <div className="etext">
-          <p className="why-label">Why it exists</p>
-          <p>{project.why}</p>
+          <div className="proof">
+            <p className="proof-v">
+              {project.proof.value}
+              <span>{project.proof.unit}</span>
+            </p>
+            <p className="proof-l">{project.proof.label}</p>
+            <p className="proof-p">{project.period}</p>
+          </div>
+          <p className="why">{project.why}</p>
           <table className="spec">
             <caption>Characteristics</caption>
             <tbody>
@@ -69,6 +78,7 @@ export function ProjectCard({
               ))}
             </tbody>
           </table>
+          {project.next && <p className="next">{project.next}</p>}
         </div>
       </div>
     </article>

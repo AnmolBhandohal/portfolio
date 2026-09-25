@@ -111,15 +111,15 @@ export function Esp32Illustration() {
         d="M152 150h20l16 16v37h20M238 203h14M282 203h14"
         fill="none"
       />
-      <text className="lbl" x="150" y="238">
-        Sensor bus
+      <text className="lbl" x="216" y="238">
+        I²C bus
       </text>
       {/* uptime note */}
       <text className="lbl" x="40" y="230">
-        Runs unattended — weeks
+        720-pt buffer · 6 h run
       </text>
       <text className="lbl" x="40" y="242">
-        Auto-reconnect · low draw
+        CSV export · REST / JSON
       </text>
     </svg>
   );

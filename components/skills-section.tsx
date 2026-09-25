@@ -2,48 +2,37 @@
 
 import { SectionHead } from "@/components/section-head";
 import { useReveal } from "@/lib/use-reveal";
+import { pins } from "@/lib/profile";
 
-const groups = [
-  {
-    id: "3.1",
-    title: "Hardware",
-    tags: ["Altium Designer", "PCB design", "Oscilloscope / DMM", "Panel wiring", "Three-phase systems"],
-  },
-  {
-    id: "3.2",
-    title: "Embedded / Firmware",
-    tags: ["ESP32", "C / C++", "PWM control", "Sensor integration"],
-  },
-  {
-    id: "3.3",
-    title: "Software",
-    tags: ["React", "Python", "JavaScript"],
-  },
-  {
-    id: "3.4",
-    title: "Fabrication",
-    tags: ["Fusion 360", "CNC machining", "DaVinci Resolve"],
-  },
-];
-
+/* §3 — the full pin-function table. Same data as FIG. 1, in the form
+   a reader who skipped the diagram can scan. */
 export function SkillsSection() {
   const ref = useReveal<HTMLDivElement>();
+  const cols = [pins.slice(0, 8), pins.slice(8)];
 
   return (
     <section className="sec sec-skills" id="skills">
-      <SectionHead sectionId="skills" tapLabel="TP3" no="§3" title="Capabilities" />
-      <div className="skill-groups rv" ref={ref}>
-        {groups.map((group) => (
-          <div className="sg" key={group.id}>
-            <h3>
-              {group.id} <span>—</span> {group.title}
-            </h3>
-            <ul className="tags">
-              {group.tags.map((tag) => (
-                <li key={tag}>{tag}</li>
+      <SectionHead sectionId="skills" tapLabel="TP3" no="§3" title="Pin functions" />
+      <div className="pinfn rv" ref={ref}>
+        {cols.map((col, i) => (
+          <table className="pft" key={i}>
+            <thead>
+              <tr>
+                <th scope="col">Pin</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {col.map((p) => (
+                <tr key={p.n}>
+                  <td className="pft-n">{p.n}</td>
+                  <td className="pft-name">{p.name}</td>
+                  <td>{p.desc}</td>
+                </tr>
               ))}
-            </ul>
-          </div>
+            </tbody>
+          </table>
         ))}
       </div>
     </section>
