@@ -87,7 +87,7 @@ nav {
 }
 .nav-id b {
   color: var(--ink);
-  font-weight: 600;
+  font-weight: 500;
 }
 nav ul {
   display: flex;
@@ -108,7 +108,7 @@ nav ul a {
 }
 nav ul a i {
   font-style: normal;
-  color: var(--copper);
+  color: var(--ink-soft);
   margin-right: 6px;
 }
 nav ul a:hover {
@@ -116,7 +116,7 @@ nav ul a:hover {
   color: var(--paper);
 }
 nav ul a:hover i {
-  color: var(--copper-soft);
+  color: rgba(246, 245, 239, 0.6);
 }
 
 /* ── FRAME: rail + content ─────────────────────────────── */
@@ -178,34 +178,45 @@ nav ul a:hover i {
   left: -72px;
   top: 50%;
   transform: translateY(-50%);
+  /* the tap is ink at rest; copper is earned when the section is in view */
+  color: var(--ink);
+  transition: color 0.4s ease;
 }
-.tap circle {
-  transition:
-    fill 0.4s ease,
-    stroke-width 0.3s ease,
-    filter 0.4s ease;
+.via.is-energized .tap {
+  color: var(--copper);
 }
-.via.is-energized circle {
-  filter: drop-shadow(0 0 4px var(--copper-soft));
+.tap-pad {
+  fill: currentColor;
+}
+.tap-via {
+  fill: var(--paper);
+  stroke: currentColor;
+  stroke-width: 2;
+}
+.tap-stub {
+  stroke: var(--ink);
+  stroke-width: 2;
 }
 .tp {
   position: absolute;
-  left: -72px;
+  /* centred on the rail, with a paper backing so the rule breaks behind it */
+  left: -36px;
   top: calc(50% + 12px);
-  width: 72px;
-  text-align: center;
+  transform: translateX(-50%);
+  background: var(--paper);
+  padding: 0 5px;
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.12em;
-  color: var(--copper-deep);
+  color: var(--ink-soft);
   transition: color 0.4s ease;
 }
 .via.is-energized .tp {
-  color: var(--copper);
+  color: var(--ink);
 }
 .sec-head h2 {
   font-family: var(--disp);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 30px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -214,8 +225,8 @@ nav ul a:hover i {
 .sec-head .no {
   font-family: var(--mono);
   font-size: 13px;
-  font-weight: 600;
-  color: var(--copper);
+  font-weight: 500;
+  color: var(--ink-soft);
 }
 .sec-head .rule {
   flex: 1;
@@ -274,31 +285,43 @@ nav ul a:hover i {
   margin-bottom: 26px;
   font-family: var(--mono);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   border: 1px solid var(--ink);
   padding: 7px 14px;
 }
 .status .dot {
+  position: relative;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--copper);
-  animation: blink 2.4s infinite;
+  background: var(--ink);
 }
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
+/* the dot itself never fades — the pulse is a ring that expands off it */
+.status .dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border: 1px solid var(--ink-soft);
+  border-radius: 50%;
+  opacity: 0;
+  animation: ping 2.4s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+}
+@keyframes ping {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.55);
   }
-  50% {
-    opacity: 0.35;
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
   }
 }
 .hero h1 {
   font-family: var(--disp);
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
   font-size: clamp(72px, 15vw, 168px);
   line-height: 0.92;
@@ -309,7 +332,7 @@ nav ul a:hover i {
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.3em;
-  color: var(--copper-deep);
+  color: var(--ink-soft);
   text-transform: uppercase;
   margin-bottom: 30px;
 }
@@ -321,7 +344,7 @@ nav ul a:hover i {
 }
 .pos em {
   font-style: normal;
-  border-bottom: 2px solid var(--copper);
+  border-bottom: 2px solid var(--ink);
 }
 .meta {
   display: flex;
@@ -375,7 +398,7 @@ nav ul a:hover i {
 }
 .ebar h3 {
   font-family: var(--disp);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 20px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -385,31 +408,29 @@ nav ul a:hover i {
 .rev {
   font-family: var(--mono);
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.12em;
   border: 1px solid rgba(246, 245, 239, 0.45);
   padding: 3px 8px;
   transition: 0.25s;
 }
 .entry.is-hovered .rev {
-  background: var(--copper-soft);
-  border-color: var(--copper-soft);
-  color: var(--ink);
+  border-color: var(--paper);
 }
 .st {
   font-family: var(--mono);
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.12em;
 }
 .st-active {
-  color: var(--copper-soft);
+  color: rgba(246, 245, 239, 0.9);
 }
 .st-active::before {
   content: "\25CF ";
 }
 .st-ship {
-  color: rgba(246, 245, 239, 0.75);
+  color: rgba(246, 245, 239, 0.9);
 }
 .st-ship::before {
   content: "\25CB ";
@@ -455,11 +476,11 @@ nav ul a:hover i {
   padding: 26px 28px 28px;
 }
 .why-label {
-  font-family: var(--mono);
+  font-family: var(--body);
   font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  color: var(--copper-deep);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
   text-transform: uppercase;
   margin-bottom: 8px;
 }
@@ -477,16 +498,12 @@ table.spec caption {
   caption-side: top;
   text-align: left;
   padding-bottom: 6px;
-  font-family: var(--mono);
+  font-family: var(--body);
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.16em;
   color: var(--ink-soft);
   text-transform: uppercase;
-  transition: color 0.25s;
-}
-.entry.is-hovered table.spec caption {
-  color: var(--copper);
 }
 table.spec th,
 table.spec td {
@@ -572,9 +589,9 @@ table.spec td {
 .facts header {
   background: var(--ink);
   color: var(--paper);
-  font-family: var(--mono);
+  font-family: var(--body);
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   padding: 8px 14px;
@@ -622,12 +639,12 @@ table.spec td {
   padding: 20px 22px 24px;
 }
 .sg h3 {
-  font-family: var(--mono);
+  font-family: var(--disp);
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--copper-deep);
+  color: var(--ink);
   margin-bottom: 14px;
 }
 .sg h3 span {
@@ -670,6 +687,9 @@ table.spec td {
   max-width: 46ch;
   flex: 1 1 340px;
 }
+.order-body p strong {
+  font-weight: 600;
+}
 .actions {
   display: flex;
   flex-direction: column;
@@ -679,7 +699,7 @@ table.spec td {
 .btn {
   font-family: var(--mono);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
@@ -757,7 +777,7 @@ footer {
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 32px 22px;
-  font-family: var(--mono);
+  font-family: var(--body);
   font-size: 10px;
   color: var(--ink-soft);
   letter-spacing: 0.06em;
@@ -800,6 +820,11 @@ footer {
 }
 .lbl-cu {
   fill: var(--copper-deep);
+}
+/* figure prose — a full sentence, so not mono (see .lbl for pin labels) */
+.lbl-prose {
+  font-family: var(--body);
+  letter-spacing: normal;
 }
 
 /* ── REVEALS ───────────────────────────────────────────── */

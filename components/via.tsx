@@ -41,13 +41,13 @@ export function Via({
       <svg className="tap" width="72" height="24" viewBox="0 0 72 24" aria-hidden="true">
         {kind === "pad" ? (
           <>
-            <rect x="30" y="6" width="12" height="12" fill="#B06A2E" />
-            <path d="M42 12h30" stroke="#20242B" strokeWidth="2" />
+            <rect className="tap-pad" x="30" y="6" width="12" height="12" />
+            <path className="tap-stub" d="M42 12h30" />
           </>
         ) : (
           <>
-            <circle cx="36" cy="12" r="5.5" fill="#F6F5EF" stroke="#B06A2E" strokeWidth="2.5" />
-            <path d="M42 12h30" stroke="#20242B" strokeWidth="2" />
+            <circle className="tap-via" cx="36" cy="12" r="5.5" />
+            <path className="tap-stub" d="M42 12h30" />
           </>
         )}
       </svg>

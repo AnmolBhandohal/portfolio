@@ -100,7 +100,7 @@ export function LedLampIllustration() {
       </text>
       {/* footer note */}
       <path className="d-thin" d="M16 210h328" strokeDasharray="1 5" />
-      <text className="lbl" x="16" y="232">
+      <text className="lbl lbl-prose" x="16" y="232">
         Loop holds brightness against ambient drift
       </text>
     </svg>
